@@ -6,14 +6,15 @@ import makeWASocket, {
 import axios from "axios";
 import fs from "fs";
 import pino from "pino";
-import qrcode from "qrcode-terminal";
+// qrcode-terminal removed because we won't print QR in terminal
 
 console.log("🚀 Starting BYD WhatsApp Agent...");
 
 // -------------------------------------------------------------
 // CONFIG: Put your n8n webhook URL here
 // -------------------------------------------------------------
-const N8N_WEBHOOK_URL = "https://n8n.modulo.click/webhook/4e4ce2c6-c8ef-487f-afcc-719dac1ea67f";
+const N8N_WEBHOOK_URL =
+  "https://n8n.modulo.click/webhook/4e4ce2c6-c8ef-487f-afcc-719dac1ea67f";
 // Example:
 // const N8N_WEBHOOK_URL = "https://n8n.modulo.click/webhook/whatsapp-leads";
 
@@ -55,8 +56,14 @@ async function start() {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
-      console.log("🔗 New QR code. Scan this from WhatsApp on your phone:");
-      qrcode.generate(qr, { small: true });
+      // Instead of printing QR in terminal, log a URL you can open in a browser
+      const qrImageUrl =
+        "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=" +
+        encodeURIComponent(qr);
+
+      console.log("🔗 New WhatsApp pairing QR generated.");
+      console.log("➡ Open this URL in a browser and scan the QR with your phone:");
+      console.log(qrImageUrl);
     }
 
     if (connection === "open") {
