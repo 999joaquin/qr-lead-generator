@@ -14,7 +14,7 @@ console.log("🚀 Starting BYD WhatsApp Agent...");
 // CONFIG: Put your n8n webhook URL here
 // -------------------------------------------------------------
 const N8N_WEBHOOK_URL =
-  "https://n8n.modulo.click/webhook/4e4ce2c6-c8ef-487f-afcc-719dac1ea67f";
+  "https://primary-production-1fb5.up.railway.app/webhook/71a14cfd-e895-4d43-8bb6-24b1fa018d6f";
 // Example:
 // const N8N_WEBHOOK_URL = "https://n8n.modulo.click/webhook/whatsapp-leads";
 
